@@ -97,7 +97,7 @@
             </nav>
 
             <!-- Navegador de torneos con su estado -->
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <ul class="nav nav-tabs bg-success" id="myTab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="home-tab" data-toggle="tab" 
                        href="#activos" role="tab" aria-controls="home" aria-selected="true">
@@ -141,7 +141,7 @@
 
                         </ul>
 
-                        <c:forEach var="listaT" items="#{usuariosController.buscarTorneos()}">
+                        <c:forEach var="listaT" items="#{usuariosController.buscarTorneos(1, 0)}">
 
                             <div class="row card mb-3 mt-2 mx-auto bg-light">
                                 <div class="row no-gutters">
@@ -217,20 +217,6 @@
 
         <!-- ***************************** JavaScript ********************************** -->
 
-        <script src="../../../resources/js/jquery-3.4.1.min.js" type="text/javascript"></script>
-        <script src="../../../resources/js/popper.min.js" type="text/javascript"></script>
-        <script src="../../../resources/js/bootstrap.min.js" type="text/javascript"></script>
-
-        <script src="../../../resources/js/all.min.js" type="text/javascript"></script>
-        <script src="../../../resources/datatable/js/jquery-3.3.1.js" type="text/javascript"></script>
-        <script src="../../../resources/datatable/js/jquery.dataTables.min.js" type="text/javascript"></script>
-        <script src="../../../resources/datatable/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
-        <script src="../../../resources/datatable/js/dataTables.responsive.min.js" type="text/javascript"></script>
-        <script src="../../../resources/datatable/js/responsive.bootstrap4.min.js" type="text/javascript"></script>
-
-        <script src="../../../resources/datatable/js/activartabla.js" type="text/javascript"></script>
-        <script src="../../../resources/js/sweetalert2@8.js" type="text/javascript"></script>
-        <script src="../../../resources/js/inscripcion_torneo.js" type="text/javascript"></script>
         <!-- ********************************************************************* -->
 
     </h:body>

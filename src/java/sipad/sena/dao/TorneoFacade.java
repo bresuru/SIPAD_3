@@ -5,9 +5,11 @@
  */
 package sipad.sena.dao;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import sipad.sena.entidades.Torneo;
 
 /**
@@ -27,6 +29,47 @@ public class TorneoFacade extends AbstractFacade<Torneo> implements TorneoFacade
 
     public TorneoFacade() {
         super(Torneo.class);
+    }
+
+    @Override
+    public List<Torneo> findEstado(Object estado) {
+
+        List<Torneo> listaTorneo = null;
+        
+        try {
+            
+            Query query = em.createQuery("SELECT t FROM Torneo t WHERE t.idEstado.idEstadoUsuario = :estado");
+            
+            query.setParameter("estado", estado);
+            
+            listaTorneo = query.getResultList();
+            
+        } catch (Exception e) {
+            throw e;
+        }
+        
+        return listaTorneo;
+    }
+
+    @Override
+    public List<Torneo> findAlumno(Object idAlumno) {
+        
+        List<Torneo> listaTorneos = null;
+        
+        try {
+            
+            Query query = em.createQuery("SELECT t FROM Torneo t WHERE t.alumnoHasTorneoList.alumnoIdAlumno.idAlumno = :idAlumno");
+            
+            query.setParameter("idAlumno", idAlumno);
+            
+            listaTorneos = query.getResultList();
+            
+        } catch (Exception e) {
+            throw e;
+        }
+        
+        return listaTorneos;
+        
     }
     
 }

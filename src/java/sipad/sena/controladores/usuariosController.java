@@ -1376,19 +1376,23 @@ public class usuariosController {
 
     }
 
-    public List<Torneo> buscarTorneos() {
+    public List<Torneo> buscarTorneos(int estado, int idAlumno) {
 
-        List<Torneo> torneos = null;
+        List<Torneo> listaTorneos = null;
 
         try {
 
-            torneos = torneosFacadeLocal.findAll();
+            if (idAlumno == 0) {
+                listaTorneos = torneosFacadeLocal.findEstado(estado);
+            } else {
+                listaTorneos = torneosFacadeLocal.findAlumno(idAlumno);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return torneos;
+        return listaTorneos;
     }
 
 }

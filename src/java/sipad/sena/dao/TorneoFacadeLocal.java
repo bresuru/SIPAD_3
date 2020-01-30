@@ -30,4 +30,8 @@ public interface TorneoFacadeLocal {
 
     int count();
     
+    List<Torneo> findEstado(Object estado);
+    
+    List<Torneo> findAlumno(Object idAlumno);
+    
 }
