@@ -194,6 +194,25 @@ public class supervisorController {
             e.printStackTrace();
         }
     }
+    
+    //Desactivar torneo
+    public void desactivarTorneo(int id_torneo){
+        
+        try {
+            
+            torneo = TorneoFL.find(id_torneo);
+            
+            estado = estadoAFL.find(2);
+            
+            torneo.setIdEstado(estado);
+            
+            TorneoFL.edit(torneo);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+    }
 
     //Buscar torneo
     public String buscarTorneo(int id_torneo) {

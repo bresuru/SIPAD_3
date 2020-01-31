@@ -97,7 +97,7 @@
             </nav>
 
             <!-- Navegador de torneos con su estado -->
-            <ul class="nav nav-tabs bg-success" id="myTab" role="tablist">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="home-tab" data-toggle="tab" 
                        href="#activos" role="tab" aria-controls="home" aria-selected="true">
@@ -120,83 +120,122 @@
             <!-- Contenedot de torneos -->
             <div class="tab-content" id="myTabContent">
                 <!-- Contenedor de torneos activos -->
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <div class="col-12">
+                <div class="tab-pane fade show active" id="activos" role="tabpanel" aria-labelledby="home-tab">
 
-                        <h1 class="col-12 text-success text-center">
-                            Torneos actuales
-                        </h1>
+                    <h1 class="col-12 text-success text-center">
+                        Torneos actuales
+                    </h1>
 
-                        <ul class="col-12 nav row">
+                    <ul class="col-12 nav row">
 
-                            <li class="nav-item col-12">
-                                <h:messages globalOnly="true" showDetail="true"
-                                            class="bg-aviso-red p-3 text-danger p-3 col-12" />
-                            </li>
+                        <li class="nav-item col-12">
+                            <h:messages globalOnly="true" showDetail="true"
+                                        class="bg-aviso-red p-3 text-danger p-3 col-12" />
+                        </li>
 
-                            <li class="nav-item col-12">
-                                <h:messages globalOnly="true" showDetail="true"
-                                            class=" bg-success text-danger p-5  col-12" for="acept"/>
-                            </li>
+                        <li class="nav-item col-12">
+                            <h:messages globalOnly="true" showDetail="true"
+                                        class=" bg-success text-danger p-5  col-12" for="acept"/>
+                        </li>
 
-                        </ul>
+                    </ul>
 
-                        <c:forEach var="listaT" items="#{usuariosController.buscarTorneos(1, 0)}">
+                    <c:forEach var="listaT" items="#{usuariosController.buscarTorneos(1, 0)}">
 
-                            <div class="row card mb-3 mt-2 mx-auto bg-light">
-                                <div class="row no-gutters">
-                                    <div class="col-md-4">
-                                        <h:graphicImage value="#{listaT.imagenTorneo}" class="card-img img-torn" alt="..."/>
+                        <div class="row card mb-3 mt-2 mx-auto bg-light">
+                            <div class="row no-gutters">
+                                <div class="col-md-4">
+                                    <h:graphicImage value="#{listaT.imagenTorneo}" class="card-img img-torn" alt="..."/>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            #{textSupp.nombreTo}:
+                                        </h5>
+                                        <h:outputText class="card-text" 
+                                                      value="#{listaT.nombreTorneo}"/>
+
+                                        <h5 class="card-title">#{textSupp.supervisor}r: </h5>
+                                        <h:outputText class="card-text" 
+                                                      value="#{listaT.idSupervisor.documento.nombre1}"/>
+
+                                        <h5 class="card-title">#{textSupp.descripcionTorneos}: </h5>
+                                        <h:outputText class="card-text" 
+                                                      value="#{listaT.descripcionTorneo}"/>
+
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="card-body">
-                                            <h5 class="card-title">
-                                                #{textSupp.nombreTo}:
-                                            </h5>
-                                            <h:outputText class="card-text" 
-                                                          value="#{listaT.nombreTorneo}"/>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Nivel de la categoria deportiva: </h5>
+                                        <p class="card-text">Juvenil</p>
+                                        <h5 class="card-title">Estado del torneo: </h5>
+                                        <p class="card-text">Abierto</p>
+                                        <h:form class="justify-content-end row mt-5 pt-5 pr-5">      
+                                            <!-- Mas informaciond del torneo -->
+                                            <a href="../pagina_error_deportista.html" class="btn btn-primary">Leer mas</a>
 
-                                            <h5 class="card-title">#{textSupp.supervisor}r: </h5>
-                                            <h:outputText class="card-text" 
-                                                          value="#{listaT.idSupervisor.documento.nombre1}"/>
-
-                                            <h5 class="card-title">#{textSupp.descripcionTorneos}: </h5>
-                                            <h:outputText class="card-text" 
-                                                          value="#{listaT.descripcionTorneo}"/>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Nivel de la categoria deportiva: </h5>
-                                            <p class="card-text">Juvenil</p>
-                                            <h5 class="card-title">Estado del torneo: </h5>
-                                            <p class="card-text">Abierto</p>
-                                            <h:form class="justify-content-end row mt-5 pt-5 pr-5">      
-                                                <!-- Mas informaciond del torneo -->
-                                                <a href="../pagina_error_deportista.html" class="btn btn-primary">Leer mas</a>
-
-                                                <!-- Boton de inscribirse en el torneo -->
-                                                <h:commandButton value="#{textSupp.inscripbirse}" 
-                                                                 actionListener="#{usuariosController.torneoInscription(listaT.idTorneo)}" 
-                                                                 class="btn btn-success ml-3" />
-                                            </h:form>
-                                        </div>
+                                            <!-- Boton de inscribirse en el torneo -->
+                                            <h:commandButton value="#{textSupp.inscripbirse}" 
+                                                             actionListener="#{usuariosController.torneoInscription(listaT.idTorneo)}" 
+                                                             class="btn btn-success ml-3" />
+                                        </h:form>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                        </c:forEach>
+                    </c:forEach>
 
-
-                    </div>
                 </div>
                 <!-- Contenedor de torneos inactivos -->
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="tab-pane fade" id="terminados" role="tabpanel" aria-labelledby="profile-tab">
+                    <c:forEach var="listaT" items="#{usuariosController.buscarTorneos(2, 0  )}">
 
+                        <div class="row card mb-3 mt-2 mx-auto bg-light">
+                            <div class="row no-gutters">
+                                <div class="col-md-4">
+                                    <h:graphicImage value="#{listaT.imagenTorneo}" class="card-img img-torn" alt="..."/>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            #{textSupp.nombreTo}:
+                                        </h5>
+                                        <h:outputText class="card-text" 
+                                                      value="#{listaT.nombreTorneo}"/>
+
+                                        <h5 class="card-title">#{textSupp.supervisor}r: </h5>
+                                        <h:outputText class="card-text" 
+                                                      value="#{listaT.idSupervisor.documento.nombre1}"/>
+
+                                        <h5 class="card-title">#{textSupp.descripcionTorneos}: </h5>
+                                        <h:outputText class="card-text" 
+                                                      value="#{listaT.descripcionTorneo}"/>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Nivel de la categoria deportiva: </h5>
+                                        <p class="card-text">Juvenil</p>
+                                        <h5 class="card-title">Estado del torneo: </h5>
+                                        <p class="card-text">Abierto</p>
+                                        <h:form class="justify-content-end row mt-5 pt-5 pr-5">      
+                                            <!-- Mas informaciond del torneo -->
+                                            <a href="../pagina_error_deportista.html" class="btn btn-primary">Leer mas</a>
+
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </c:forEach>
                 </div>
                 <!-- Contenedor de torneos inscritos -->
-                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                <div class="tab-pane fade" id="inscripto" role="tabpanel" aria-labelledby="contact-tab">
+
 
                 </div>
             </div>

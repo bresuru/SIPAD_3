@@ -124,6 +124,16 @@ and open the template in the editor.
                                              actionListener="#{supervisorController.eliminarTorneo(torneo.idTorneo)}"/>
 
                         </h:column>
+                        
+                        <h:column>
+
+                            <f:facet name="header">#{textSupp.desactivar}</f:facet>
+
+                            <h:commandButton value="#{textSupp.desactivar}" 
+                                             class=" btn btn-danger"    
+                                             actionListener="#{supervisorController.desactivarTorneo(torneo.idTorneo)}"/>
+
+                        </h:column>
 
                     </h:dataTable>
 

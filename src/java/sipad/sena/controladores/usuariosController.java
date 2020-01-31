@@ -1383,8 +1383,11 @@ public class usuariosController {
         try {
 
             if (idAlumno == 0) {
-                listaTorneos = torneosFacadeLocal.findEstado(estado);
+                listaTorneos = torneosFacadeLocal.findEstado(estado, idAlumno);
             } else {
+                usuarios = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+                alumno = alumnoFL.find(usuarios);
+                idAlumno = alumno.getIdAlumno();
                 listaTorneos = torneosFacadeLocal.findAlumno(idAlumno);
             }
 

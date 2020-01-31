@@ -32,7 +32,7 @@ public class TorneoFacade extends AbstractFacade<Torneo> implements TorneoFacade
     }
 
     @Override
-    public List<Torneo> findEstado(Object estado) {
+    public List<Torneo> findEstado(int estado, int idAlumno) {
 
         List<Torneo> listaTorneo = null;
         
