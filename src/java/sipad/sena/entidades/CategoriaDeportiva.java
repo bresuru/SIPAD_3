@@ -29,7 +29,8 @@ import javax.persistence.Table;
     @NamedQuery(name = "CategoriaDeportiva.findAll", query = "SELECT c FROM CategoriaDeportiva c")
     , @NamedQuery(name = "CategoriaDeportiva.findByIdCategoria", query = "SELECT c FROM CategoriaDeportiva c WHERE c.idCategoria = :idCategoria")
     , @NamedQuery(name = "CategoriaDeportiva.findByNombreCategoria", query = "SELECT c FROM CategoriaDeportiva c WHERE c.nombreCategoria = :nombreCategoria")
-    , @NamedQuery(name = "CategoriaDeportiva.findByFotoCategoria", query = "SELECT c FROM CategoriaDeportiva c WHERE c.fotoCategoria = :fotoCategoria")})
+    , @NamedQuery(name = "CategoriaDeportiva.findByFotoCategoria", query = "SELECT c FROM CategoriaDeportiva c WHERE c.fotoCategoria = :fotoCategoria")
+    , @NamedQuery(name = "CategoriaDeportiva.findByDescripcion", query = "SELECT c FROM CategoriaDeportiva c WHERE c.descripcion = :descripcion")})
 public class CategoriaDeportiva implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,6 +43,9 @@ public class CategoriaDeportiva implements Serializable {
     private String nombreCategoria;
     @Column(name = "foto_categoria")
     private String fotoCategoria;
+    @Basic(optional = false)
+    @Column(name = "descripcion")
+    private String descripcion;
     @OneToMany(mappedBy = "idCategoria", fetch = FetchType.LAZY)
     private List<Nivel> nivelList;
 
@@ -50,6 +54,11 @@ public class CategoriaDeportiva implements Serializable {
 
     public CategoriaDeportiva(Integer idCategoria) {
         this.idCategoria = idCategoria;
+    }
+
+    public CategoriaDeportiva(Integer idCategoria, String descripcion) {
+        this.idCategoria = idCategoria;
+        this.descripcion = descripcion;
     }
 
     public Integer getIdCategoria() {
@@ -74,6 +83,14 @@ public class CategoriaDeportiva implements Serializable {
 
     public void setFotoCategoria(String fotoCategoria) {
         this.fotoCategoria = fotoCategoria;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public List<Nivel> getNivelList() {

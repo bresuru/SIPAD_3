@@ -66,6 +66,8 @@ public class Evento implements Serializable {
     @JoinColumn(name = "Id_Supervisor", referencedColumnName = "id_Supervisor")
     @ManyToOne(fetch = FetchType.LAZY)
     private Supervisor idSupervisor;
+    @OneToMany(mappedBy = "idEvento", fetch = FetchType.LAZY)
+    private List<PremiosEventos> premiosEventosList;
 
     public Evento() {
     }
@@ -144,6 +146,14 @@ public class Evento implements Serializable {
 
     public void setIdSupervisor(Supervisor idSupervisor) {
         this.idSupervisor = idSupervisor;
+    }
+
+    public List<PremiosEventos> getPremiosEventosList() {
+        return premiosEventosList;
+    }
+
+    public void setPremiosEventosList(List<PremiosEventos> premiosEventosList) {
+        this.premiosEventosList = premiosEventosList;
     }
 
     @Override

@@ -31,5 +31,5 @@ public interface UsuarioFacadeLocal {
     int count();
 
     List<Usuario> fintTipoUser(Object idRol, Object idEstado);
-
+    
 }

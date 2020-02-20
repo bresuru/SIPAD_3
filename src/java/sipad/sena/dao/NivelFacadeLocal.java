@@ -33,5 +33,5 @@ public interface NivelFacadeLocal {
     Nivel fintNivelPro(Object profesor);
 
     List<Nivel> findInformacion(Object idcategoria);
-
+    
 }

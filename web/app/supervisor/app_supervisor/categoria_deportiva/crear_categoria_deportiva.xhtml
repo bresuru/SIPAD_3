@@ -4,7 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       >
 
     <h:head>
@@ -28,18 +28,43 @@
         <ui:include src="../../../../WEB-INF/supervisor/nav/nav_sup_sec.xhtml"/>
 
         <!-- Formulario de creacion de categoria deportiva -->
-        <div class="container w-75 mt-5">
+        <div class="container w-75 mt-5 bg-light p-5">
 
             <div class="row">
                 <h1 class="col-12 pl-4 mt-2 mb-1">
-                    Formulario de creación de categoria deportiva
+                    #{textSupp.formCreaCategoDepor}
                 </h1>
             </div>
 
-            <h:form class="p-3">
+            <h:form class="p-3" enctype="multipart/form-data">
+
                 <div class="form-group">
-                      <h:outputLabel for="NombreCD" value="Nombre de categoria deportiva"/> 
-                      <h:inputText class="form-control" id="txttituloCD" a:pattern="[A-Za-z - ]{1,100}"  value="#{categoriaController.categoriaDeportiva.nombreCategoria}" required="true"/>
+
+                    <h:messages globalOnly="true" showDetail="true" class="bg-info text-white p-3"/>
+
+                </div>
+
+                <div class="form-group">
+                    <h:outputLabel for="nombreCD" value="#{textSupp.nombreCategoria}"/> 
+                    <h:inputText class="form-control" id="nombreCD" a:pattern="[A-Za-z - ]{1,100}"  
+                                 value="#{categoriaController.categoriaDeportiva.nombreCategoria}" 
+                                 required="true" requiredMessage="* Falta el nombre de la categoria deportiva"/>
+                    <h:message for="nombreCD" class="text-danger pl-4 p-2 row alert-danger"/>
+                </div>
+
+                <div class="form-group">
+                    <h:outputLabel for="desC" value="#{textSupp.descripcionTorneos}"/> 
+                    <h:inputTextarea class="form-control" a:pattern="[A-Za-z - ]{1,100}"  rows="5" 
+                                 value="#{categoriaController.categoriaDeportiva.descripcion}" requiredMessage="* Falta la descripcion"
+                                 required="true" id="desC"/>
+                    <h:message for="desC" class="text-danger pl-4 p-2 row alert-danger"/>
+                </div>
+
+                <div class="form-group">
+                    <h:outputLabel for="foto" value="Imagen"/> 
+                    <h:inputFile class="form-control" value="#{categoriaController.arController.file}"
+                                 required="true" id="imageC" requiredMessage="* Falta importar imagen"/>
+                    <h:message for="imageC" class="text-danger pl-4 p-2 row alert-danger"/>
                 </div>
 
                 <div class="row">

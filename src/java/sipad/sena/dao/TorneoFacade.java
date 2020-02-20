@@ -30,7 +30,7 @@ public class TorneoFacade extends AbstractFacade<Torneo> implements TorneoFacade
     public TorneoFacade() {
         super(Torneo.class);
     }
-
+    
     @Override
     public List<Torneo> findEstado(int estado, int idAlumno) {
 
@@ -52,13 +52,13 @@ public class TorneoFacade extends AbstractFacade<Torneo> implements TorneoFacade
     }
 
     @Override
-    public List<Torneo> findAlumno(Object idAlumno) {
+    public List<AlumnoHasTorneoFacade> findAlumnoTorneo(int idAlumno) {
         
-        List<Torneo> listaTorneos = null;
+        List<AlumnoHasTorneoFacade> listaTorneos = null;
         
         try {
             
-            Query query = em.createQuery("SELECT t FROM Torneo t WHERE t.alumnoHasTorneoList.alumnoIdAlumno.idAlumno = :idAlumno");
+            Query query = em.createQuery("SELECT t FROM AlumnoHasTorneo t WHERE t.alumnoIdAlumno.idAlumno = :idAlumno");
             
             query.setParameter("idAlumno", idAlumno);
             

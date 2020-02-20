@@ -112,7 +112,7 @@ public class archivosController {
             in.close();
             out.close();
 
-            FacesContext.getCurrentInstance().responseComplete();
+            
 
         } catch (IOException e) {
             e.printStackTrace();

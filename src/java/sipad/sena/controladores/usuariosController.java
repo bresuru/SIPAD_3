@@ -767,7 +767,7 @@ public class usuariosController {
 
             user = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
             alumno = alumnoFL.findAlumno(user.getDocumento());
-            nivel = nivelFL.find(alumno.getIdNivelCategoria());
+            nivel = nivelFL.find(alumno.getIdNivelCategoria().getIdNivel());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -779,8 +779,12 @@ public class usuariosController {
     //consultar torneos del alumno
     public List<AlumnoHasTorneo> listaAlumnoT() {
         List<AlumnoHasTorneo> lista = null;
+        Usuario user;
 
         try {
+
+            user = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+            alumno = alumnoFL.findAlumno(user.getDocumento());
 
             lista = alumnoTFL.findAlumnoT(alumno.getIdAlumno());
 
@@ -1311,6 +1315,7 @@ public class usuariosController {
         Usuario user = null;
         List<AlumnoHasTorneo> listarAT = null;
         AlumnoHasTorneo aht = null;
+        boolean estado = true;
 
         try {
 
@@ -1320,29 +1325,24 @@ public class usuariosController {
 
                 torneos = torneosFacadeLocal.find(idTorn);
 
-                listarAT = alumnoTFL.findAll();
-
                 int idTorneo = 0;
                 int idAlumno = 0;
 
                 alumno = alumnoFL.findAlumno(user.getDocumento());
 
+                listarAT = alumnoTFL.findAlumnoT(alumno.getIdAlumno());
+
                 //Busco si el alumno ya esta inscripto en el torneo
                 for (AlumnoHasTorneo alumnoHasTorneo : listarAT) {
-                    idTorneo = alumnoHasTorneo.getTorneoIdTorneo().getIdTorneo();
 
-                    //Busco el id del alumno en la tabla de alumnohastorneo
-                    if (idTorneo == idTorn) {
-                        idAlumno = alumnoHasTorneo.getIdAlumnTorn();
-                        //Verifico si el id del torneo es el mimos al que se va a incribir
-                        if (idAlumno == alumno.getIdAlumno()) {
-                            aht = alumnoTFL.findAlumnoTorneo(alumno.getIdAlumno(), torneos.getIdTorneo());
-                        }
+                    if (alumnoHasTorneo.getTorneoIdTorneo().getIdTorneo() == idTorn) {
+                        estado = false;
                     }
+
                 }
 
                 //verifico si el alumno estaba ya en untorneo
-                if (aht == null) {
+                if (estado) {
 
                     //inicalizo la variable de alumnoHasTorneo
                     aht = new AlumnoHasTorneo();
@@ -1388,7 +1388,6 @@ public class usuariosController {
                 usuarios = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
                 alumno = alumnoFL.find(usuarios);
                 idAlumno = alumno.getIdAlumno();
-                listaTorneos = torneosFacadeLocal.findAlumno(idAlumno);
             }
 
         } catch (Exception e) {

@@ -52,6 +52,9 @@ public class Notificacion implements Serializable {
     @JoinColumn(name = "id_supervisor", referencedColumnName = "id_Supervisor")
     @ManyToOne(fetch = FetchType.LAZY)
     private Supervisor idSupervisor;
+    @JoinColumn(name = "idTipoNotificacion", referencedColumnName = "idTipoNotificaion")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private TipoNotificacion idTipoNotificacion;
 
     public Notificacion() {
     }
@@ -98,6 +101,14 @@ public class Notificacion implements Serializable {
 
     public void setIdSupervisor(Supervisor idSupervisor) {
         this.idSupervisor = idSupervisor;
+    }
+
+    public TipoNotificacion getIdTipoNotificacion() {
+        return idTipoNotificacion;
+    }
+
+    public void setIdTipoNotificacion(TipoNotificacion idTipoNotificacion) {
+        this.idTipoNotificacion = idTipoNotificacion;
     }
 
     @Override

@@ -30,7 +30,7 @@ public class SupervisorFacade extends AbstractFacade<Supervisor> implements Supe
     public SupervisorFacade() {
         super(Supervisor.class);
     }
-
+    
     @Override
     public List<Supervisor> findEstado(Object estado) {
         List<Supervisor> sup = null;
@@ -51,14 +51,14 @@ public class SupervisorFacade extends AbstractFacade<Supervisor> implements Supe
     }
 
     @Override
-    public Supervisor findUser(int idUser) {
+    public Supervisor findUser(Object idUser) {
         Supervisor sup = null;
         List<Supervisor> lista = null;
 
         try {
 
             Query query = em.createQuery("SELECT s FROM Supervisor s WHERE s.documento.documento = :doc");
-            query.setParameter(":dooc", idUser);
+            query.setParameter(":doc", idUser);
 
             lista = query.getResultList();
 
@@ -72,5 +72,5 @@ public class SupervisorFacade extends AbstractFacade<Supervisor> implements Supe
 
         return sup;
     }
-
+    
 }

@@ -32,6 +32,6 @@ public interface TorneoFacadeLocal {
     
     List<Torneo> findEstado(int estado, int idAlumno);
     
-    List<Torneo> findAlumno(Object idAlumno);
+    List<AlumnoHasTorneoFacade> findAlumnoTorneo(int idAlumno);
     
 }

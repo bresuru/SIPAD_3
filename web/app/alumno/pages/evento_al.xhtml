@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Academia Deportiva Bocaneiros - Deportista</title>
         <meta charset="utf-8"/>
@@ -102,16 +103,17 @@
                 </h1>
 
                 <div class="row card mb-3 mt-2 mx-auto bg-light">
-                    <div class="row no-gutters">
+                    <c:forEach class="row no-gutters" items="#{eventoController.listarEventos()}" 
+                               var="listaEventos">
                         <div class="col-md-4">
                             <img src="../../../resources/images/bingo.jpg" class="card-img" alt="..."/>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-12">
                             <div class="card-body">
                                 <h5 class="card-title">Nombre del evento: </h5>
-                                <p class="card-text">Ultra Bingo</p>
+                                <h:outputText value="#{listaEventos.nombreEvento}" class="card-text"/>
                                 <h5 class="card-title">Organizador: </h5>
-                                <p class="card-text">Bocaneiros</p>
+                                <h:outputText class="card-text" value="#{listaEventos.idSupervisor.documento.nombre1} #{listaEventos.idSupervisor.documento.apellido1}"/>
                                 <h5 class="card-title">Lugar del evento: </h5>
                                 <p class="card-text">Cancha Deportiva Bocaneiros</p>
                             </div>
@@ -128,7 +130,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </c:forEach>
                 </div>
 
 
@@ -148,7 +150,7 @@
         </div>	
         <!-- Fin del contenedor de toda la informacion -->
 
-        <ui:include src="../../WEB-INF/indexEst/footer.xhtml"/>
+        <ui:include src="../../../WEB-INF/indexEst/footer.xhtml"/>
 
         <!-- **************** Fin de todos los formularios *************** -->
 

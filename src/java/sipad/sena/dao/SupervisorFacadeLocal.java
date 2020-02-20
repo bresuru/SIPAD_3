@@ -8,7 +8,6 @@ package sipad.sena.dao;
 import java.util.List;
 import javax.ejb.Local;
 import sipad.sena.entidades.Supervisor;
-import sipad.sena.entidades.Usuario;
 
 /**
  *
@@ -33,6 +32,6 @@ public interface SupervisorFacadeLocal {
 
     List<Supervisor> findEstado(Object estado);
 
-    Supervisor findUser(int idUser);
-
+    Supervisor findUser(Object idUser);
+    
 }

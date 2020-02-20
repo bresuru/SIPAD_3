@@ -88,5 +88,5 @@ public class ProfesorFacade extends AbstractFacade<Profesor> implements Profesor
 
         return pro;
     }
-
+    
 }

@@ -30,7 +30,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
     public UsuarioFacade() {
         super(Usuario.class);
     }
-
+    
     @Override
     public List<Usuario> fintTipoUser(Object idRol, Object idEstado) {
         List<Usuario> lista = null;
@@ -50,5 +50,5 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
 
         return lista;
     }
-
+    
 }

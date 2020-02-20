@@ -59,7 +59,7 @@ and open the template in the editor.
 
 
                                     <!--  Contenedor del formulario de incripcion  -->
-                                    <div class="col-12 col-md-11 col-lg-12 mt-4 text-ligh mx-auto">
+                                    <div class="col-12 col-md-11 col-lg-12 mt-4 text-ligh mx-auto wa">
 
                                         <div class="mb-3">
                                             <h:outputLabel for="doc" value="#{textSupp.documentoI}: "/>
@@ -67,6 +67,7 @@ and open the template in the editor.
                                                 <h:inputText class="form-control col-md-6 mx-auto" 
                                                              value="#{inscripcionController.usuarios.documento}" 
                                                              id="doc" required="true" a:pattern="[0-9]{6,9}"/>
+                                                
                                                 <h:selectOneMenu class="col-md-5"
                                                                  value="#{inscripcionController.tipoDoc.idTipoDoc}">
                                                     <f:selectItems 
@@ -76,6 +77,7 @@ and open the template in the editor.
                                                         itemLabel="#{tipoDoc.topoDoc}"
                                                         />
                                                 </h:selectOneMenu>
+                                                
                                             </div>
                                             <h:messages for="doc" showDetail="true"/>
                                         </div>

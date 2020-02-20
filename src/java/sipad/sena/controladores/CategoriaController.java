@@ -1,4 +1,4 @@
-    package sipad.sena.controladores;
+package sipad.sena.controladores;
 
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -51,6 +51,9 @@ public class CategoriaController {
     private NivelHasHorarioFacadeLocal NHFL;
     private NivelHasHorario nivelhashorario;
 
+    //Archivos
+    archivosController arController;
+
     @PostConstruct
     public void init() {
         categoriaDeportiva = new CategoriaDeportiva();
@@ -62,6 +65,8 @@ public class CategoriaController {
         supervisor = new Supervisor();
         horarioentrenamiento = new HorarioEntrenamiento();
         nivelhashorario = new NivelHasHorario();
+
+        arController = new archivosController();
     }
 
     public CategoriaDeportiva getCategoriaDeportiva() {
@@ -136,12 +141,37 @@ public class CategoriaController {
         this.nivelhashorario = nivelhashorario;
     }
 
+    public archivosController getArController() {
+        return arController;
+    }
+
+    public void setArController(archivosController arController) {
+        this.arController = arController;
+    }
+
     //Metodo para crear una categoria deportiva
     public void crearCategoria() {
+        List<CategoriaDeportiva> listaCategoriaDeportiva = null;
+
+        boolean estado = true;
+
         try {
 
-            CDFL.create(categoriaDeportiva);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso: ", "Categoria creada con exito"));
+            listaCategoriaDeportiva = CDFL.findAll();
+
+            for (CategoriaDeportiva categoriaDeportiva1 : listaCategoriaDeportiva) {
+                if (categoriaDeportiva.getNombreCategoria().equals(categoriaDeportiva1.getNombreCategoria())) {
+                    estado = false;
+                }
+            }
+
+            if (estado) {
+                CDFL.create(categoriaDeportiva);
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso: ", "Categoria creada con exito"));
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso: ", "La categoria deportiva ya existe"));
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -152,8 +182,9 @@ public class CategoriaController {
     //Metodo para crear un nivel
 
     public void crearNivel() {
+
         try {
-            
+
             NFL.create(nivel);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso: ", "Nivel creado con exito"));
 
@@ -253,8 +284,6 @@ public class CategoriaController {
         return "modificar_categoria";
 
     }
-   
-
 
     public String consultarNivel(int idNivel) {
         try {
@@ -286,6 +315,7 @@ public class CategoriaController {
 
         return "mas_informacion_categoria";
     }
+
     public String categoria_crearNivel(int idCategoria) {
 
         try {
@@ -304,9 +334,9 @@ public class CategoriaController {
     public String informacionAlumno(int idCategoria) {
 
         try {
-            
+
             categoriaDeportiva = CDFL.find(idCategoria);
-            
+
         } catch (Exception e) {
 
             e.printStackTrace();
@@ -321,25 +351,26 @@ public class CategoriaController {
         try {
             ListaInfo = NFL.findInformacion(categoriaDeportiva.getIdCategoria());
             if (!ListaInfo.isEmpty()) {
- 
+
             } else {
-             
+
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return ListaInfo;
     }
+
     //metodo para llenar la tabla de alumnos
-    public List<Alumno> listarAlum(){
+    public List<Alumno> listarAlum() {
         List<Alumno> ListaAlum = null;
-        try{
-            ListaAlum=AFL.findInfoAlumno(categoriaDeportiva.getIdCategoria());
-             if (!ListaAlum.isEmpty()) {
-               
+        try {
+            ListaAlum = AFL.findInfoAlumno(categoriaDeportiva.getIdCategoria());
+            if (!ListaAlum.isEmpty()) {
+
             } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Error", "No se ha listado correctamente"));
-                
+
             }
         } catch (Exception e) {
             e.printStackTrace();

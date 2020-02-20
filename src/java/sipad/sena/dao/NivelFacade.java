@@ -30,7 +30,7 @@ public class NivelFacade extends AbstractFacade<Nivel> implements NivelFacadeLoc
     public NivelFacade() {
         super(Nivel.class);
     }
-
+    
     @Override
     public Nivel fintNivelPro(Object profesor) {
         Nivel n = null;
@@ -68,5 +68,5 @@ public class NivelFacade extends AbstractFacade<Nivel> implements NivelFacadeLoc
 
         return listaN;
     }
-
+    
 }

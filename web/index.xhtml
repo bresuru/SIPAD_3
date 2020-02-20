@@ -21,6 +21,7 @@
         <link href="resources/css/index_estilos.css" rel="stylesheet" type="text/css"/>
 
     </h:head>
+        
     <f:view locale="#{lenguajeController.seleccionarIdioma}">
         <h:body class="bg-white">		
 
@@ -94,29 +95,7 @@
 
                         </ul>
 
-                        <h:form id="form-logout" class="form-inline my-2 my-lg-0">
-
-                            <h:outputText value="#{textSupp.idioma}: "/>
-
-                            <button type="button" class="btn p-0 dropdown-toggle  text-white"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-globe"></i>
-                            </button>
-
-                            <div class="dropdown-menu p-0" aria-labelledby="dropdownMenuButton">
-
-                                <c:forEach items="#{lenguajeController.listaIdioma}" var="idioma">
-
-                                    <h:commandLink
-                                        class="dropdown-item" actionListener="#{lenguajeController.cambiarIdioma(idioma)}"
-                                        value="#{idioma.language}"
-                                        />
-
-                                </c:forEach>
-
-                            </div>
-
-                        </h:form>
+                        
 
 
                     </div>

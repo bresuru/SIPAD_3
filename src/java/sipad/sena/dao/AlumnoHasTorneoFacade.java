@@ -30,7 +30,7 @@ public class AlumnoHasTorneoFacade extends AbstractFacade<AlumnoHasTorneo> imple
     public AlumnoHasTorneoFacade() {
         super(AlumnoHasTorneo.class);
     }
-
+    
     @Override
     public void removeAlumno(Object alumno) {
         int row;
@@ -93,5 +93,5 @@ public class AlumnoHasTorneoFacade extends AbstractFacade<AlumnoHasTorneo> imple
         return aht;
 
     }
-
+    
 }

@@ -32,12 +32,22 @@ public class TorneoController {
     private UsuarioFacadeLocal UFL;
     private Usuario user;
 
+    @EJB
+    private AlumnoHasTorneoFacadeLocal alumnoHasTorneoFacadeLocal;
+    private AlumnoHasTorneo alumnoHasTorneo;
+
+    @EJB
+    private AlumnoFacadeLocal alumnoFacadeLocal;
+    private Alumno alumno;
+
     @PostConstruct
     public void init() {
         torneo = new Torneo();
         lugarTorneo = new LugarTorneo();
         superv = new Supervisor();
         user = new Usuario();
+        alumno = new Alumno();
+        alumnoHasTorneo = new AlumnoHasTorneo();
 
         listaLugarTorneo = LTFL.findAll();
     }
@@ -91,6 +101,22 @@ public class TorneoController {
 
     public void setUser(Usuario user) {
         this.user = user;
+    }
+
+    public AlumnoHasTorneo getAlumnoHasTorneo() {
+        return alumnoHasTorneo;
+    }
+
+    public void setAlumnoHasTorneo(AlumnoHasTorneo alumnoHasTorneo) {
+        this.alumnoHasTorneo = alumnoHasTorneo;
+    }
+
+    public Alumno getAlumno() {
+        return alumno;
+    }
+
+    public void setAlumno(Alumno alumno) {
+        this.alumno = alumno;
     }
 
     //Metodos:
@@ -159,19 +185,52 @@ public class TorneoController {
         return "modificarTorneo";
 
     }
-    
+
     public void modificarTorneo() {
         try {
             superv = SFL.find(2);
             torneo.setIdLugarTorneo(lugarTorneo);
             torneo.setIdSupervisor(superv);
 
-
             TFL.edit(torneo);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    //consultar torneos del alumno
+    public List<AlumnoHasTorneo> listaAlumnoT() {
+        List<AlumnoHasTorneo> lista = null;
+
+        try {
+
+            lista = alumnoHasTorneoFacadeLocal.findAlumnoT(alumno.getIdAlumno());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return lista;
+    }
+    
+    //Buscar torneo
+    public String buscarTorneo(int idTorneo){
+        
+        String url = "";
+        
+        try {
+            
+            torneo = TFL.find(idTorneo);
+            
+            url = "/app/alumno/pages/torneo_al_info";
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return url;
+        
     }
 
 }

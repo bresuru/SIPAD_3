@@ -51,12 +51,7 @@
 
             <!-- Navegacion	 -->
             <ui:include src="../../WEB-INF/alumno/nav_alumno.xhtml"/>
-            
-            <div class="alert alert-info" role="alert">
-                
-                <h:messages globalOnly="true" showDetail="true"/>
-                
-            </div>
+
 
             <!-- Informaion del deportista -->
             <div class="row">
@@ -156,7 +151,7 @@
                 <div class="card mb-3 w-100 mt-3">
                     <div class="row no-gutters">
                         <div class="col-md-12">
-                            <h:form class="card-body">
+                            <h:form class="card-body" enctype="multipart/form-data">
                                 <h3 class="card-title text-center text-success p-2">
                                     #{textSupp.torneos}
                                 </h3>
@@ -213,7 +208,8 @@
 
                                         <f:facet name="header">#{textSupp.consultar}</f:facet>
 
-                                        <h:commandButton class="btn btn-warning" value="#{textSupp.consultar}"/>
+                                        <h:commandButton class="btn btn-warning" value="#{textSupp.consultar}"
+                                                         action="#{torneoController.buscarTorneo(at.torneoIdTorneo.idTorneo)}"/>
 
 
 

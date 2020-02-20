@@ -35,5 +35,5 @@ public interface ProfesorFacadeLocal {
     List<Profesor> findProfesorA(Object profesor);
 
     Profesor findUser(int isUser);
-
+    
 }

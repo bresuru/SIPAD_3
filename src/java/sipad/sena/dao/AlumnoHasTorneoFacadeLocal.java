@@ -29,11 +29,11 @@ public interface AlumnoHasTorneoFacadeLocal {
     List<AlumnoHasTorneo> findRange(int[] range);
 
     int count();
-
+    
     void removeAlumno(Object alumno);
 
     List<AlumnoHasTorneo> findAlumnoT(Object alumno);
     
     AlumnoHasTorneo findAlumnoTorneo(int idAlumno, int idTorneo);
-
+    
 }

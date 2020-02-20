@@ -37,7 +37,34 @@ and open the template in the editor.
                     <h:outputText value="#{textSupp.telefono}: "/>
                 </div>
 
-                
+                <div class="col-12 text-center text-light">
+                    <h:form id="form-logout" class=" my-2 my-lg-0">
+
+                        <h:outputText value="#{textSupp.idioma}: "/>
+
+                        <button type="button" class="btn p-0 dropdown-toggle  text-white"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-globe"></i>
+                        </button>
+
+                        <div class="dropdown-menu p-0" aria-labelledby="dropdownMenuButton">
+
+                            <c:forEach items="#{lenguajeController.listaIdioma}" var="idioma">
+
+                                <h:commandLink
+                                    class="dropdown-item" actionListener="#{lenguajeController.cambiarIdioma(idioma)}"
+                                    value="#{idioma.language}"
+                                    />
+
+                            </c:forEach>
+
+                        </div>
+
+                    </h:form>
+                </div>
+
+
+
 
             </footer>
         </h:body>

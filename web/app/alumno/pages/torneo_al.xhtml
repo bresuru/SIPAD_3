@@ -4,7 +4,9 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      >
     <h:head>
         <title>Academia Deportiva Bocaneiros - Deportista</title>
         <meta charset="utf-8"/>
@@ -16,6 +18,9 @@
 
         <!-- Estilos propios -->
         <link href="../../../resources/css/estilos.css" rel="stylesheet" type="text/css"/>
+
+
+
     </h:head>
 
     <h:body>		
@@ -50,32 +55,44 @@
                 </button>
 
                 <!-- Botones de pantalla grande -->
-                <div class="collapse navbar-collapse" id="navegador">
+                <h:form class="collapse navbar-collapse" id="navegador">
 
                     <!-- Botones de paginas -->
                     <ul class="nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="../indexAlumno.xhtml"><i class="fas fa-user-alt"></i> Perfil<span class="sr-only">(current)</span></a>
+                            <h:commandLink class="nav-link" action="/app/alumno/indexAlumno?faces-redirect=true">
+                                <i class="fas fa-user-alt"></i> Perfil
+                            </h:commandLink>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="info_profesor.xhtml"><i class="fas fa-address-book"></i> Profesor </a>
+                            <h:commandLink class="nav-link" action="/app/alumno/pages/info_profesor?faces-redirect=true">
+                                <i class="fas fa-address-book"></i> Profesor 
+                            </h:commandLink>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link actual" href="torneo_al.xhtml"><i class="fas fa-trophy"></i> Torneos </a>
+                            <h:commandLink class="nav-link actual" action="/app/alumno/pages/torneo_al?faces-redirect=true">
+                                <i class="fas fa-trophy"></i> Torneos 
+                            </h:commandLink>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link " href="evento_al.xhtml"><i class="fas fa-laugh"></i> Eventos </a>
+                            <h:commandLink class="nav-link " action="/app/alumno/pages/evento_al?faces-redirect=true">
+                                <i class="fas fa-laugh"></i> Eventos 
+                            </h:commandLink>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="horario_al.xhtml"><i class="fas fa-calendar-alt"></i> Horario </a>
+                            <h:commandLink class="nav-link" action="/app/alumno/pages/horario_al?faces-redirect=true">
+                                <i class="fas fa-calendar-alt"></i> Horario 
+                            </h:commandLink>
                         </li> 
 
                         <li class="nav-item">
-                            <a class="nav-link" href="notificacion_al.xhtml"><i class="fas fa-bell"></i> Notificación </a>
+                            <h:commandLink class="nav-link" action="/app/alumno/pages/notificacion_al?faces-redirect=true">
+                                <i class="fas fa-bell"></i> Notificación
+                            </h:commandLink>
                         </li> 
 
                         <li class="nav-item dropdown ">
@@ -85,14 +102,7 @@
                         </li>
                     </ul>
 
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </form>
-
-                </div>
+                </h:form>
 
             </nav>
 
@@ -113,7 +123,7 @@
                 <li class="nav-item">
                     <a class="nav-link" id="contact-tab" data-toggle="tab" href="#inscrito" role="tab"
                        aria-controls="contact" aria-selected="false">
-                        Torneos incritos
+                        Torneos inscritos
                     </a>
                 </li>
             </ul>
@@ -121,10 +131,6 @@
             <div class="tab-content" id="myTabContent">
                 <!-- Contenedor de torneos activos -->
                 <div class="tab-pane fade show active" id="activos" role="tabpanel" aria-labelledby="home-tab">
-
-                    <h1 class="col-12 text-success text-center">
-                        Torneos actuales
-                    </h1>
 
                     <ul class="col-12 nav row">
 
@@ -173,7 +179,8 @@
                                         <p class="card-text">Abierto</p>
                                         <h:form class="justify-content-end row mt-5 pt-5 pr-5">      
                                             <!-- Mas informaciond del torneo -->
-                                            <a href="../pagina_error_deportista.html" class="btn btn-primary">Leer mas</a>
+                                            <h:commandLink class="btn btn-warning" value="#{textSupp.masInfo}. . ."
+                                                           action="#{torneoController.buscarTorneo(listaT.idTorneo)}"/>
 
                                             <!-- Boton de inscribirse en el torneo -->
                                             <h:commandButton value="#{textSupp.inscripbirse}" 
@@ -190,7 +197,7 @@
                 </div>
                 <!-- Contenedor de torneos inactivos -->
                 <div class="tab-pane fade" id="terminados" role="tabpanel" aria-labelledby="profile-tab">
-                    <c:forEach var="listaT" items="#{usuariosController.buscarTorneos(2, 0  )}">
+                    <c:forEach var="listaT" items="#{usuariosController.buscarTorneos(2, 0)}">
 
                         <div class="row card mb-3 mt-2 mx-auto bg-light">
                             <div class="row no-gutters">
@@ -223,7 +230,8 @@
                                         <p class="card-text">Abierto</p>
                                         <h:form class="justify-content-end row mt-5 pt-5 pr-5">      
                                             <!-- Mas informaciond del torneo -->
-                                            <a href="../pagina_error_deportista.html" class="btn btn-primary">Leer mas</a>
+                                            <h:commandLink class="btn btn-warning" value="#{textSupp.consultar}"
+                                                           action="#{torneoController.buscarTorneo(listaT.idTorneo)}"/>
 
                                         </h:form>
                                     </div>
@@ -234,13 +242,58 @@
                     </c:forEach>
                 </div>
                 <!-- Contenedor de torneos inscritos -->
-                <div class="tab-pane fade" id="inscripto" role="tabpanel" aria-labelledby="contact-tab">
+                <div class="tab-pane fade" id="inscrito" role="tabpanel" >
+
+                    <c:forEach var="listaTA" items="#{usuariosController.listaAlumnoT()}">
+
+                        <div class="row card mb-3 mt-2 mx-auto bg-light">
+                            <div class="row no-gutters">
+                                <div class="col-md-4">
+                                    <h:graphicImage value="#{listaTA.torneoIdTorneo.imagenTorneo}" class="card-img img-torn" alt="..." />
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            #{textSupp.nombreTo}:
+                                        </h5>
+                                        <h:outputText class="card-text" 
+                                                      value="#{listaTA.torneoIdTorneo.nombreTorneo}"/>
+
+                                        <h5 class="card-title">#{textSupp.supervisor}r: </h5>
+                                        <h:outputText class="card-text" 
+                                                      value="#{listaTA.torneoIdTorneo.idSupervisor.documento.nombre1}"/>
+
+                                        <h5 class="card-title">#{textSupp.descripcionTorneos}: </h5>
+                                        <h:outputText class="card-text" 
+                                                      value="#{listaTA.torneoIdTorneo.descripcionTorneo}"/>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Nivel de la categoria deportiva: </h5>
+                                        <p class="card-text">Juvenil</p>
+                                        <h5 class="card-title">Estado del torneo: </h5>
+                                        <p class="card-text">Abierto</p>
+                                        <h:form class="justify-content-end row mt-5 pt-5 pr-5">      
+                                            <!-- Mas informaciond del torneo -->
+                                            <h:commandLink class="btn btn-warning" value="#{textSupp.consultar}"
+                                                           action="#{torneoController.buscarTorneo(listaTA.torneoIdTorneo.idTorneo)}"/>
+
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </c:forEach>
+
+                    <!-- ***************************************************************************************************** -->
 
 
                 </div>
+
             </div>
-
-
 
 
             <!-- *******************Fin de las fichas********************** -->

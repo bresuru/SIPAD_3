@@ -7,6 +7,7 @@ package sipad.sena.dao;
 
 import java.util.List;
 import javax.ejb.Local;
+import sipad.sena.entidades.Alumno;
 import sipad.sena.entidades.AlumnoHasEvento;
 
 /**

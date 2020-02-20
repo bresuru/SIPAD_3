@@ -54,5 +54,5 @@ public class LoginFacade extends AbstractFacade<Login> implements LoginFacadeLoc
 
         return user;
     }
-
+    
 }

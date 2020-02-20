@@ -46,5 +46,5 @@ public class AlumnoHasEventoFacade extends AbstractFacade<AlumnoHasEvento> imple
             throw e;
         }
     }
-
+    
 }

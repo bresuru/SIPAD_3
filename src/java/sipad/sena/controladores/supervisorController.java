@@ -56,6 +56,11 @@ public class supervisorController {
     private AlumnoHasTorneoFacadeLocal alumnoTorneoFL;
     private AlumnoHasTorneo alumnoTorneo;
 
+    @EJB
+    private NotificacionFacadeLocal notificacionFacadeLocal;
+    private Notificacion notificacion;
+    private List<Notificacion> listarNotificaciones;
+
     @PostConstruct
     public void init() {
         torneo = new Torneo();
@@ -65,6 +70,7 @@ public class supervisorController {
         alumno = new Alumno();
         alumnoTorneo = new AlumnoHasTorneo();
         archivos = new archivosController();
+        notificacion = new Notificacion();
 
         listaLugarTorneo = lugarToneoFL.findAll();
     }
@@ -76,6 +82,14 @@ public class supervisorController {
     }
 
     //GETTHERS Y SETTHERS
+    public Notificacion getNotificacion() {
+        return notificacion;
+    }
+
+    public void setNotificacion(Notificacion notificacion) {
+        this.notificacion = notificacion;
+    }
+
     public Torneo getTorneo() {
         return torneo;
     }
@@ -180,8 +194,6 @@ public class supervisorController {
 
     //metodos de torneos
     //Crear nuevo torneo
-   
-
     //Eliminar Torneo
     public void eliminarTorneo(int id_torneo) {
         try {
@@ -194,24 +206,24 @@ public class supervisorController {
             e.printStackTrace();
         }
     }
-    
+
     //Desactivar torneo
-    public void desactivarTorneo(int id_torneo){
-        
+    public void desactivarTorneo(int id_torneo) {
+
         try {
-            
+
             torneo = TorneoFL.find(id_torneo);
-            
+
             estado = estadoAFL.find(2);
-            
+
             torneo.setIdEstado(estado);
-            
+
             TorneoFL.edit(torneo);
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }
 
     //Buscar torneo
@@ -387,8 +399,7 @@ public class supervisorController {
         }
 
     }
-    
-    
+
     //crear torneo
     public void createTorn() {
         Usuario user = null;
@@ -398,21 +409,42 @@ public class supervisorController {
             user = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
 
             if (user != null) {
+
                 archivos.subirImagen();
                 torneo.setImagenTorneo(archivos.getPathReal());
 
-                supervisor.setIdSupervisor(1);
+                supervisor = supervisorFL.find(1);
                 torneo.setIdSupervisor(supervisor);
-                
+
                 torneo.setIdLugarTorneo(lugarTorneo);
 
                 estado = estadoAFL.find(1);
                 torneo.setIdEstado(estado);
 
-                TorneoFL.create(torneo);
+                if (torneo.getFechaInicio().before(torneo.getFechaFinal())) {
 
-                FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso: ", "Se creo el torneo exitosamente"));
+                    //Guardo el torneo
+                    TorneoFL.create(torneo);
+                    
+                    //Creo la notificacion
+                    notificacion.setNombreNotificacion(torneo.getNombreTorneo());
+                    notificacion.setDescripcion(torneo.getDescripcionTorneo());
+                    notificacion.setIdSupervisor(supervisor);
+
+                    //tipo notificacion
+                    noticacionController cn = new noticacionController();
+                    notificacion.setIdTipoNotificacion(cn.guardarNotificacion(5));
+
+                    //guardo la notificacion
+                    notificacionFacadeLocal.create(notificacion);
+                    
+                    FacesContext.getCurrentInstance().addMessage(null,
+                            new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso: ", "Se creo el torneo exitosamente"));
+                } else {
+                    FacesContext.getCurrentInstance().addMessage(null,
+                            new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso: ", "La fecha de inicio del torneo no puede ser inferior a la de finalisacion"));
+                }
+
             } else {
                 loginController loginController1 = new loginController();
                 loginController1.verificarSession();

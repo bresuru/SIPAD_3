@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Academia Deportiva Bocaneiros - Notificaciones</title>
         <meta charset="utf-8"/>
@@ -98,7 +99,7 @@
             <div class="row">
 
                 <!-- Tipos de notificaciones -->
-                <div class="col-3">
+                <div class="col-md-3">
                     <div class="card col-12  text-dark bg-light mb-3">
                         <div class="card-header">Tipos de noticicaciones</div>
                         <div class="card-body">
@@ -112,87 +113,25 @@
                 </div>
 
                 <!-- Notificaciones -->
-                <div class="col-8 p-3 bg-white">
-                    <div class="card col-12  text-white bg-primary mb-3">
-                        <div class="card-header">Entrenamiento</div>
-                        <div class="card-body">
-                            <h5 class="card-title">En equipo</h5>
-                            <p class="card-text">Se hara un entrenamiento para mejorar el rendimiento de los equipos para los torneos. Se debe consultar el horario para saber cuando y donde es. </p>
-                        </div>
-                    </div>
-
-                    <div class="card col-12  text-white bg-danger mb-3">
-                        <div class="card-header">Aviso</div>
-                        <div class="card-body">
-                            <h5 class="card-title">EL profesor se lastimo</h5>
-                            <p class="card-text">EL profesor de la categoria deportiva se ha lastimado una pierna entonces se aprasara la clase. </p>
-                        </div>
-                    </div>
-
-                    <div class="card col-12  text-white bg-primary mb-3">
-                        <div class="card-header">Entrenamiento</div>
-                        <div class="card-body">
-                            <h5 class="card-title">Problemas</h5>
-                            <p class="card-text">Debido a ciertos incovenientes la clase se aplaso dos dias. </p>
-                        </div>
-                    </div>
-
-                    <div class="card col-12  text-white bg-primary mb-3 ">
-                        <div class="card-header">Entrenamiento</div>
-                        <div class="card-body">
-                            <h5 class="card-title">Proxima clase</h5>
-                            <p class="card-text">La clase se hara el dia 28 de junio del 2019. </p>
-                        </div>
-                    </div>
-
-                    <div class="card col-12  text-white bg-success mb-3">
-                        <div class="card-header">Evento</div>
-                        <div class="card-body">
-                            <h5 class="card-title">Bingo 3000</h5>
-                            <p class="card-text">Este fin de semana se hara un bingo donde se rifara grandiosos premios como un balon y una bicicleta. </p>
-                        </div>
-                    </div>
-
-                    <div class="card col-12 text-white bg-dark mb-3">
-                        <div class="card-header">Reunion</div>
-                        <div class="card-body">
-                            <h5 class="card-title">Prades de familia</h5>
-                            <p class="card-text">Se hara una reunion para hablar con los padres acerca de unos temas importantes. </p>
-                        </div>
-                    </div>
-
-                    <div class="card col-12  text-white bg-primary mb-3 ">
-                        <div class="card-header">Entrenamiento</div>
-                        <div class="card-body">
-                            <h5 class="card-title">Mini-torneo</h5>
-                            <p class="card-text">Se hara un torneo pequeño la proxima clase contra los diferentes equipos que hay. </p>
-                        </div>
-                    </div>
-
-                    <div class="card col-12  text-white bg-warning mb-3 ">
-                        <div class="card-header">Torneo</div>
-                        <div class="card-body">
-                            <h5 class="card-title">Nuevo torneo</h5>
-                            <p class="card-text">Se ha creado un torneo para la categoria futbol del nivel juvenil y hay inscripciones abiertas. </p>
-                        </div>
-                    </div>
-
-                    <div class="card col-12  text-white bg-primary mb-3 ">
-                        <div class="card-header">Entrenamiento</div>
-                        <div class="card-body">
-                            <h5 class="card-title">Arqueros</h5>
-                            <p class="card-text">Se hara un entrenamiento a los arqueros para mejorar sus refejos. </p>
-                        </div>
-                    </div>
-
-                    <div class="card col-12  text-white bg-success mb-3">
-                        <div class="card-header">Evento</div>
-                        <div class="card-body">
-                            <h5 class="card-title">Torneo de tekwondo</h5>
-                            <p class="card-text">Estan invitados a ver y apoyar a nuestros deportitas de tekwondo que estan participando en el torneo de movistar. </p>
-                        </div>
-                    </div>
+                <div class="col-md-8 p-3 bg-white">
+                    <c:forEach class="col-8 p-3 bg-white" 
+                               items="#{noticacionController.listarNotificaciones}"
+                               var="listaNo" >                        
+                        <h:form class="card col-12  text-white #{listaNo.idTipoNotificacion.colorNotificacion} mb-3">
+                            <div class="card-header">
+                                <h5>
+                                    #{listaNo.nombreNotificacion}
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <h:outputText value="#{listaNo.descripcion}" class="card-text text-lg"/>
+                            </div>
+                        </h:form>
+                    </c:forEach>
                 </div>
+
+
+
             </div>
 
             <!-- **************** Pîe de pagina **************** -->
