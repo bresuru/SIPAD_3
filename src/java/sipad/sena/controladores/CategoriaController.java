@@ -186,6 +186,9 @@ public class CategoriaController {
         try {
 
             NFL.create(nivel);
+            
+            NFL = new NivelFacade();
+            
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso: ", "Nivel creado con exito"));
 
         } catch (Exception e) {

@@ -95,7 +95,7 @@ public class archivosController {
         path = path + "\\web\\archivos\\images\\";
 
         try {
-
+            
             this.nombre = file.getSubmittedFileName();
             path = path + this.nombre;
             pathReal = "/archivos/images/" + this.nombre;
