@@ -5,6 +5,7 @@
  */
 package sipad.sena.controladores;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -103,6 +104,27 @@ public class noticacionController {
         
         return tipoNotificacion;
         
+    }
+    
+    public List<Notificacion> listaNotificaiones(){
+        
+        List<Notificacion> listaN = null;
+        List<Notificacion> listaNF = new ArrayList<>();
+        
+        
+        try {
+            
+            listaN = notificacionFacadeLocal.findAll();
+            
+            for (int i = listaN.size() - 1; i > (listaN.size() - 8); i--) {
+                listaNF.add(listaN.get(i));
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return listaNF;
     }
     
     

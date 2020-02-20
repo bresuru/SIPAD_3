@@ -115,7 +115,7 @@
                 <!-- Notificaciones -->
                 <div class="col-md-8 p-3 bg-white">
                     <c:forEach class="col-8 p-3 bg-white" 
-                               items="#{noticacionController.listarNotificaciones}"
+                               items="#{noticacionController.listaNotificaiones()}"
                                var="listaNo" >                        
                         <h:form class="card col-12  text-white #{listaNo.idTipoNotificacion.colorNotificacion} mb-3">
                             <div class="card-header">
