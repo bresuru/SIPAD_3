@@ -158,7 +158,16 @@
                     Deportistas que participaron en el torneo
                 </h2>
 
-
+                <c:forEach var="listaTornAlumn"
+                    items="#{torneoController.fontAlumnTorn(torneoController.torneo.idTorneo)}">
+                    
+                    <div>
+                        
+                        <h:outputText value="#{listaTornAlumn.documento.nombre1}"/>
+                        
+                    </div>
+                    
+                </c:forEach>
 
                 <!-- *******************Fin de las fichas********************** -->
             </div>

@@ -30,7 +30,7 @@ public class AlumnoFacade extends AbstractFacade<Alumno> implements AlumnoFacade
     public AlumnoFacade() {
         super(Alumno.class);
     }
-    
+
     @Override
     public List<Alumno> findEstado(int estado) {
         List<Alumno> lista = null;
@@ -104,5 +104,26 @@ public class AlumnoFacade extends AbstractFacade<Alumno> implements AlumnoFacade
 
         return alumno;
     }
-    
+
+    @Override
+    public List<Alumno> findAlumnTorn(int idTorneo) {
+
+        List<Alumno> listaAlumn = null;
+
+        try {
+
+            Query query = em.createQuery("SELECT a FROM Alumno a WHERE a.alumnoHasTorneoList.torneoIdTorneo.idTorneo = :id_torneo");
+
+            query.setParameter("id_torneo", idTorneo);
+
+            listaAlumn = query.getResultList();
+
+        } catch (Exception e) {
+            throw e;
+        }
+
+        return listaAlumn;
+
+    }
+
 }

@@ -232,5 +232,22 @@ public class TorneoController {
         return url;
         
     }
+    
+    //Consultar alumnos del torneo
+    public List<Alumno> fontAlumnTorn(int id_torn){
+        
+        List<Alumno>  listaAlumn = null;
+        
+        try {
+            
+            listaAlumn = alumnoFacadeLocal.findAlumnTorn(id_torn);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return listaAlumn;
+        
+    }
 
 }
