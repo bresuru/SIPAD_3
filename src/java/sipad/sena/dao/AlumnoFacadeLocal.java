@@ -38,6 +38,6 @@ public interface AlumnoFacadeLocal {
     
     List<Alumno> findInfoAlumno (Object idCategoria);
     
-    List<Alumno> findAlumnTorn(int idTorneo);
+    List<Alumno> findAlumnTorn(Object idTorneo);
     
 }

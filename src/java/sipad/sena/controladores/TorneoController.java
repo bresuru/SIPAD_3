@@ -234,13 +234,13 @@ public class TorneoController {
     }
     
     //Consultar alumnos del torneo
-    public List<Alumno> fontAlumnTorn(int id_torn){
+    public List<AlumnoHasTorneo> fontAlumnTorn(int id_torn){
         
-        List<Alumno>  listaAlumn = null;
+        List<AlumnoHasTorneo>  listaAlumn = null;
         
         try {
             
-            listaAlumn = alumnoFacadeLocal.findAlumnTorn(id_torn);
+            listaAlumn = alumnoHasTorneoFacadeLocal.findAll();
             
         } catch (Exception e) {
             e.printStackTrace();

@@ -106,7 +106,7 @@ public class AlumnoFacade extends AbstractFacade<Alumno> implements AlumnoFacade
     }
 
     @Override
-    public List<Alumno> findAlumnTorn(int idTorneo) {
+    public List<Alumno> findAlumnTorn(Object idTorneo) {
 
         List<Alumno> listaAlumn = null;
 
