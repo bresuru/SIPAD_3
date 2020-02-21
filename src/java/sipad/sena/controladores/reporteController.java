@@ -16,13 +16,13 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
-
+/**
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-
+**/
 import sipad.sena.entidades.*;
 import sipad.sena.dao.*;
 
@@ -38,7 +38,7 @@ public class reporteController {
     
     @EJB
     private TorneoFacadeLocal torneoFacadeLocal;
-
+/**
     public void reporteAlumnosB() {
         Map<String, Object> parametros = new HashMap<String, Object>();
 
@@ -137,5 +137,5 @@ public class reporteController {
             e.printStackTrace();
         }
     }
-
+**/
 }
