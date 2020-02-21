@@ -30,7 +30,7 @@ public class AlumnoHasTorneoFacade extends AbstractFacade<AlumnoHasTorneo> imple
     public AlumnoHasTorneoFacade() {
         super(AlumnoHasTorneo.class);
     }
-    
+
     @Override
     public void removeAlumno(Object alumno) {
         int row;
@@ -93,5 +93,25 @@ public class AlumnoHasTorneoFacade extends AbstractFacade<AlumnoHasTorneo> imple
         return aht;
 
     }
-    
+
+    @Override
+    public List<AlumnoHasTorneo> findAlumnoHasTorn(int idTorn) {
+
+        List<AlumnoHasTorneo> listaaht = null;
+
+        try {
+
+            Query query = em.createQuery("SELECT at FROM AlumnoHasTorneo at WHERE at.torneoIdTorneo.idTorneo = :idTorneo");
+
+            query.setParameter("idTorneo", idTorn);
+
+            listaaht = query.getResultList();
+
+        } catch (Exception e) {
+            throw e;
+        }
+
+        return listaaht;
+    }
+
 }

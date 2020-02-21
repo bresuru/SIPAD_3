@@ -36,4 +36,6 @@ public interface AlumnoHasTorneoFacadeLocal {
     
     AlumnoHasTorneo findAlumnoTorneo(int idAlumno, int idTorneo);
     
+    List<AlumnoHasTorneo> findAlumnoHasTorn(int idTorn);
+    
 }
