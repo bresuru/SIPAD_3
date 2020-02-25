@@ -240,7 +240,7 @@ public class TorneoController {
         
         try {
             
-            listaAlumn = alumnoHasTorneoFacadeLocal.findAll();
+            listaAlumn = alumnoHasTorneoFacadeLocal.findAlumnoHasTorn(id_torn);
             
         } catch (Exception e) {
             e.printStackTrace();

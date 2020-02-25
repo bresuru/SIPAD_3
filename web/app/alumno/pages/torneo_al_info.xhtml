@@ -58,7 +58,7 @@
                 <h:form class="collapse navbar-collapse" id="navegador">
 
                     <!-- Botones de paginas -->
-                    <ul class="nav mr-auto">
+                    <ul class="nav mr-auto mt-2 mt-lg-0">
                         <li class="nav-item active">
                             <h:commandLink class="nav-link" action="/app/alumno/indexAlumno?faces-redirect=true">
                                 <i class="fas fa-user-alt"></i> Perfil
@@ -140,10 +140,10 @@
                             <div class="card-body">
                                 <h5 class="card-title pt-3">#{textSupp.lugarTor} </h5>
                                 <h:outputText class="card-text" value="#{torneoController.torneo.idLugarTorneo.nombreLugarTorneo}"/>
-                                               
+
                                 <h5 class="card-title pt-3">#{textSupp.direccion} </h5>
                                 <h:outputText class="card-text" value="#{torneoController.torneo.idLugarTorneo.direccion}"/>
-                                
+
                                 <h5 class="card-title pt-3">#{textSupp.fechaFinTo} </h5>
                                 <h:outputText a:type="date" class="card-text" value="#{torneoController.torneo.fechaFinal}">
                                     <f:convertDateTime pattern="dd-MM-yyyy"/>
@@ -158,16 +158,65 @@
                     Deportistas que participaron en el torneo
                 </h2>
 
-                <c:forEach var="listaTornAlumn"
-                    items="#{torneoController.fontAlumnTorn(torneoController.torneo.idTorneo)}">
+                <h:dataTable value="#{torneoController.fontAlumnTorn(torneoController.torneo.idTorneo)}"
+                             var="listaA" class="table table-success alumno mt-4 col-12 col-md-11 m-auto">
+
                     
-                    <div>
+                    <h:column>
+
+                        <f:facet name="header" class="text-center">
+                            <h:outputText value="#{textSupp.documentoI}" class="text-center m-auto"/>
+                        </f:facet>
+
+                        <h:outputText value="#{listaA.alumnoIdAlumno.documento.documento}"/>
                         
-                        <h:outputText value="#{listaTornAlumn.alumnoIdAlumno.documento.nombre1}"/>
-                        
-                    </div>
+
+                    </h:column>
                     
-                </c:forEach>
+                    <h:column>
+
+                        <f:facet name="header" class="text-center">
+                            <h:outputText value="#{textSupp.nombre}" class="text-center m-auto"/>
+                        </f:facet>
+
+                        <h:outputText value="#{listaA.alumnoIdAlumno.documento.nombre1} #{listaA.alumnoIdAlumno.documento.nombre2}"/>
+                        
+
+                    </h:column>
+                    
+                    <h:column>
+
+                        <f:facet name="header" class="text-center">
+                            <h:outputText value="#{textSupp.apellidoUsu}" class="text-center m-auto"/>
+                        </f:facet>
+
+                        <h:outputText value="#{listaA.alumnoIdAlumno.documento.apellido1} #{listaA.alumnoIdAlumno.documento.apellido2}"/>
+                        
+
+                    </h:column>
+                    
+                    <h:column>
+
+                        <f:facet name="header" class="text-center">
+                            <h:outputText value="#{textSupp.descripCD}" class="text-center m-auto"/>
+                        </f:facet>
+
+                        <h:outputText value="#{listaA.alumnoIdAlumno.descripcion}"/>
+                        
+
+                    </h:column>
+                    
+                    <h:column>
+
+                        <f:facet name="header">
+                            <h:outputText value="#{textSupp.categoriaDeportiva}"/>
+                        </f:facet>
+
+                        <h:outputText value="#{listaA.alumnoIdAlumno.idNivelCategoria.idCategoria.nombreCategoria}"/>
+
+                    </h:column>
+
+                </h:dataTable>
 
                 <!-- *******************Fin de las fichas********************** -->
             </div>
