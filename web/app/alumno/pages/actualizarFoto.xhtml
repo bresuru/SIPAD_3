@@ -73,7 +73,11 @@
                         <div class="row">
 
                             <!-- Informacion del estudiante -->
+                            <div class="card-header col-12 text-center mt-0 p-1">
 
+                                <h:outputLabel value="#{textSupp.modificar} #{textSupp.Info}" class=" col-12 text-primary"/>
+
+                            </div>
 
                             <div class="col-12 bg-success text-white">
                                 <h:messages class="text-white" globalOnly="true" showDetail="true"/>
@@ -81,92 +85,24 @@
 
 
                             <!--  Contenedor del formulario de incripcion  -->
-                            <div class="col-10 text-ligh mx-auto bg-light p-5">
+                            <div class="col-10 text-ligh mx-auto">
 
                                 <div class="mb-3 row">
+                                    <h:outputLabel for="image" class="col-12 text-center" value="#{textSupp.fotoPerfil}"/>
                                     <div class="col-12 col-md-8 col-lg-6 col-xl-4 mx-auto">
-                                        <h:inputHidden value="#{usuariosController.usuarios.fotoPerfil}" class="col-12 images-circular mb-1"/>
+                                        <h:graphicImage value="#{usuariosController.usuarios.fotoPerfil}" class="col-12 images-circular mb-1"/>
+                                    </div>
+                                    <div class="col-12 mx-auto text-center">
+                                        <h:inputFile a:accept=".jpg" value="#{usuariosController.archivo.file}" 
+                                                     id="image" label="#{textSupp.buscarImage}" required="true"/>
                                     </div>
                                     <h:messages for="image" showDetail="true"/>
                                 </div>
 
-                                <div class="mb-3">
-                                    <h:outputLabel for="nombreU" value="#{textSupp.nombre}: "/>
-                                    <h:inputText class="form-control" 
-                                                 value="#{usuariosController.usuarios.nombre1}" 
-                                                 id="nombreU" required="true"/>
-                                    <h:messages for="nombreU" showDetail="true"/>
-                                </div>
-
-                                <div class="mb-3">
-                                    <h:outputLabel for="nombreU2" value="#{textSupp.nombre} 2: "/>
-                                    <h:inputText class="form-control" 
-                                                 value="#{usuariosController.usuarios.nombre2}" 
-                                                 id="nombreU2" required="true"/>
-                                    <h:messages for="nombreU2" showDetail="true"/>
-                                </div>
-
-                                <div class="mb-3">
-                                    <h:outputLabel for="apellidoU" value="#{textSupp.apellidoUsu}: "/>
-                                    <h:inputText class="form-control" 
-                                                 value="#{usuariosController.usuarios.apellido1}" 
-                                                 id="apellidoU" required="true"/>
-                                    <h:messages for="apellidoU" showDetail="true"/>
-                                </div>
-
-                                <div class="mb-3">
-                                    <h:outputLabel for="apellidoU2" value="#{textSupp.apellidoUsu} 2: "/>
-                                    <h:inputText class="form-control" 
-                                                 value="#{usuariosController.usuarios.apellido2}" 
-                                                 id="apellidoU2" required="true"/>
-                                    <h:messages for="apellidoU2" showDetail="true"/>
-                                </div>
-
-                                <div class="mb-3">
-                                    <h:outputLabel for="telefono" value="#{textSupp.telefono} "/>
-                                    <h:inputText class="form-control" 
-                                                 value="#{usuariosController.usuarios.telefono}" 
-                                                 id="telefono" required="true"/>
-                                    <h:messages for="telefono" showDetail="true"/>
-                                </div>
-
-                                <div class="">
-                                    <h:inputHidden
-                                        value="#{usuariosController.usuarios.fechaNacimiento}" 
-                                        class="form-control" id="fechaN">
-                                        <f:convertDateTime pattern="yyyy-MM-dd"/>
-                                    </h:inputHidden>
-                                    <h:messages for="fechaN" showDetail="true"/>
-                                </div>
-
-
-                                <div class="">
-                                    <h:inputHidden class="is-invalid" 
-                                                   value="#{usuariosController.tipoSangre.idtipoSangre}"/>
-
-                                </div>
-
-                                <!-- Llenar la tbla de alumno -->
-                                <h:inputHidden class="form-control" id="enfermedad"
-                                               value="#{usuariosController.alumno.descripcion}"
-                                               />
-
-
-                                <!-- Beca -->
-                                <div class="">
-                                    <h:inputHidden
-                                        value="#{usuariosController.alumno.beca}" 
-                                        class="form-control" id="beca"/>
-
-                                    <h:messages for="beca" showDetail="true"/>
-                                </div>
-
-
-
                                 <h:inputHidden value="#{usuariosController.usuarios.documento}"/>
                                 <h:inputHidden value="#{usuariosController.alumno.idAlumno}"/>
 
-                                <div class=" text-center">
+                                <div class="mb-4 mt-4 text-center">
                                     <h:commandButton value="#{textSupp.modificar} #{textSupp.estudiante}"
                                                      class="btn btn-success"
                                                      actionListener="#{usuariosController.actualizarPerfilAlumno()}"

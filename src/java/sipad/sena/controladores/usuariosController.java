@@ -979,8 +979,6 @@ public class usuariosController {
 
         try {
 
-            archivo.subirImagen();
-
             user = usuariosFL.find(usuarios.getDocumento());
             alu = alumnoFL.find(alumno.getIdAlumno());
 
@@ -990,13 +988,17 @@ public class usuariosController {
             user.setNombre2(usuarios.getNombre2());
             user.setApellido1(usuarios.getApellido1());
             user.setApellido2(usuarios.getApellido2());
+            user.setTelefono(usuarios.getTelefono());
             user.setFechaNacimiento(usuarios.getFechaNacimiento());
 
-            eps = epsFL.find(1);
+            eps = epsFL.find(user.getIdEps().getIdEps());
 
+            tipoDoc = tipoDocFL.find(user.getIdTipoDoc().getIdTipoDoc());
+            
             user.setIdTipoDoc(tipoDoc);
             user.setIdEps(eps);
             user.setIdtipoSangre(tipoSangre);
+            user.setFotoPerfil(usuarios.getFotoPerfil());
 
             alu.setDescripcion(alumno.getDescripcion());
             alu.setBeca(alumno.getBeca());
@@ -1004,7 +1006,7 @@ public class usuariosController {
             usuariosFL.edit(user);
             alumnoFL.edit(alu);
 
-            usuarios.setFotoPerfil(archivo.getPathReal());
+            usuarios.setFotoPerfil(usuarios.getFotoPerfil());
 
             alumno = alumnoFL.find(alumno.getIdAlumno());
 
