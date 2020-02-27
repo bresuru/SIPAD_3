@@ -34,10 +34,12 @@ public interface AlumnoFacadeLocal {
     
     List<Alumno> findEstado(int estado);
     
-    List<Alumno> findAlumPro(Object profesor);
+    List<Alumno> findAlumPro(int profesor);
     
     List<Alumno> findInfoAlumno (Object idCategoria);
     
     List<Alumno> findAlumnTorn(Object idTorneo);
+    
+    List<Alumno> findAlumnoNivel(int idNivel);
     
 }

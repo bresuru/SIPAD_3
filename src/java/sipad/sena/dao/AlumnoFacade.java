@@ -51,12 +51,12 @@ public class AlumnoFacade extends AbstractFacade<Alumno> implements AlumnoFacade
     }
 
     @Override
-    public List<Alumno> findAlumPro(Object profesor) {
+    public List<Alumno> findAlumPro(int profesor) {
         List<Alumno> lista = null;
 
         try {
 
-            Query query = em.createQuery("SELECT a FROM Alumno a WHERE a.documento.idRol.idRol = 1 AND a.documento.idEstadoUsuario.idEstadoUsuario = 1 AND a.idNivelCategoria.idProfesor.idProfesor = :profe");
+            Query query = em.createQuery("SELECT a FROM Alumno a WHERE a.documento.idEstadoUsuario.idEstadoUsuario = 1 AND a.idNivelCategoria.idProfesor.idProfesor = :profe");
 
             query.setParameter("profe", profesor);
 
@@ -123,6 +123,27 @@ public class AlumnoFacade extends AbstractFacade<Alumno> implements AlumnoFacade
         }
 
         return listaAlumn;
+
+    }
+
+    @Override
+    public List<Alumno> findAlumnoNivel(int idNivel) {
+
+        List<Alumno> listaAlumnos = null;
+        
+        try {
+            
+            Query query = em.createQuery("SELECT a FROM Alumno a WHERE a.idNivelCategoria.idNivel = :idNivel");
+            
+            query.setParameter("idNivel", idNivel);
+            
+            listaAlumnos = query.getResultList();
+            
+        } catch (Exception e) {
+            throw e;
+        }
+        
+        return listaAlumnos;
 
     }
 

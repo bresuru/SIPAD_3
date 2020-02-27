@@ -296,19 +296,17 @@ public class usuariosController {
 
         List<Alumno> listarAlumnos = null;
 
-        Usuario user;
+        Usuario user = new Usuario();
 
-        Profesor pro;
+        Profesor pro = new Profesor();
 
         try {
 
             user = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
 
-            pro = profesorFL.find(user.getDocumento());
+            pro = profesorFL.findUser(user.getDocumento());
 
-            categoria = categoriaFL.find(1);
-
-            listarAlumnos = alumnoFL.findInfoAlumno(categoria.getIdCategoria());
+            listarAlumnos = alumnoFL.findAlumnoNivel(5);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -590,8 +588,8 @@ public class usuariosController {
             if (profe != null) {
                 listarA = alumnoFL.findAlumPro(profe.getIdProfesor());
             } else {
-                loginController login = new loginController();
-                login.verificarSession();
+                loginController logi = new loginController();
+                logi.verificarSession();
             }
 
         } catch (Exception e) {
@@ -784,7 +782,7 @@ public class usuariosController {
         try {
 
             user = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
-            alumno = alumnoFL.findAlumno(user.getDocumento());
+            
 
             lista = alumnoTFL.findAlumnoT(alumno.getIdAlumno());
 
@@ -1078,18 +1076,18 @@ public class usuariosController {
 
     }
 
-    public void actualizarDescripionAlumno() {
+    public void actualizarDescripionAlumno(int idAlumno) {
 
-        Usuario user = null;
+        Usuario user = new Usuario();
 
-        Alumno alum = null;
+        Alumno alum = new Alumno();
 
         try {
 
             user = usuariosFL.find(usuarios.getDocumento());
 
             if (user != null) {
-                alum = alumnoFL.find(alumno.getIdAlumno());
+                alum = alumnoFL.find(idAlumno);
                 alum.setDescripcion(alumno.getDescripcion());
 
                 alumnoFL.edit(alum);

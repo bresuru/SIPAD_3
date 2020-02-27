@@ -62,7 +62,7 @@ and open the template in the editor.
                             <f:facet name="header">#{textSupp.fechaInTo}</f:facet>
 
                             <h:outputText id="fechaIT" value="#{torneo.fechaInicio}">
-                                <f:convertDateTime pattern="yyyy-mm-dd"/>
+                                <f:convertDateTime pattern="yyyy-MM-dd"/>
                             </h:outputText>
 
                         </h:column>
@@ -72,7 +72,7 @@ and open the template in the editor.
                             <f:facet name="header">#{textSupp.fechaFinTo}</f:facet>
 
                             <h:outputText id="fechaFT" value="#{torneo.fechaFinal}">
-                                <f:convertDateTime pattern="yyyy-mm-dd"/>
+                                <f:convertDateTime pattern="yyyy-MM-dd"/>
                             </h:outputText>
 
                         </h:column>

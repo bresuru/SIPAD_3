@@ -257,7 +257,7 @@ public class supervisorController {
     //Listar torneo
     public List<Torneo> listarTorneo() {
 
-        List<Torneo> torneoL = new VirtualFlow.ArrayLinkedList<>();
+        List<Torneo> torneoL = null;
         try {
             torneoL = TorneoFL.findAll();
         } catch (Exception e) {

@@ -140,6 +140,8 @@
 
                 <h:form class="card mb-3 p-3 col-12 fondo-prefil1" id="cambiar_fondo">
                     <div class="row no-gutters tras">
+                        
+                        <h:inputHidden value="#{usuariosController.alumno.idAlumno}"/>
                         <div class="col-md-4">
                             <h:graphicImage value="#{usuariosController.usuarios.fotoPerfil}" class="card-img"/>
                         </div>
@@ -221,7 +223,8 @@
 
                                     <div class="col-12">
                                         <h:commandButton value="#{textSupp.modificar}" type="button" 
-                                                         class="btn btn-warning" a:data-toggle="modal" a:data-target="#editarFallas"/>
+                                                         class="btn btn-warning" a:data-toggle="modal" 
+                                                         a:data-target="#editarFallas"/>
                                     </div>
 
                                 </h:form>
@@ -242,7 +245,7 @@
                                 <h3 class="card-title text-center text-success p-2">
                                     #{textSupp.torneos}
                                 </h3>
-
+                                <h:inputHidden value="#{usuariosController.alumno.idAlumno}"/>
                                 <!-- Tabla de asistencia del deportista -->
                                 <h:dataTable value="#{usuariosController.listaAlumnoT()}" var="at"
                                              class="table dt-responsive  alumnos">
@@ -315,9 +318,6 @@
 
 
             <!-- **************** Pîe de pagina **************** -->
-            <footer>
-
-            </footer>
 
         </div>	
         <!-- Fin del contenedor de toda la informacion -->
@@ -348,7 +348,7 @@
                         <div class="mb-4 mt-4 text-center">
                             <h:commandButton value="#{textSupp.modificar}"
                                              class="btn btn-success"
-                                             actionListener="#{usuariosController.actualizarDescripionAlumno()}"
+                                             actionListener="#{usuariosController.actualizarDescripionAlumno(usuariosController.alumno.idAlumno)}"
                                              />
                         </div>
 
@@ -374,7 +374,7 @@
                     <h:form class="modal-body">
 
                         <h:inputHidden value="#{usuariosController.usuarios.documento}"/>
-                        <h:inputHidden value="#{usuariosController.alumno.idAlumno}"/>
+                        <h:inputText value="#{usuariosController.alumno.idAlumno}"/>    
 
                         <div class="mb-3">
                             <h:outputLabel for="nombreU" value="#{textSupp.Fallas}: "/>
