@@ -35,6 +35,12 @@ and open the template in the editor.
                     </button>
                 </div>
                 <div class="modal-body">
+                    
+                    <div class="form-group">
+                        
+                        <h:messages globalOnly="true" showDetail="true"/>
+                        
+                    </div>
 
                     <div class="form-group">
                         <h:outputLabel for="NombreEvento" value=" Titulo del evento"/> 
@@ -43,8 +49,12 @@ and open the template in the editor.
 
                     <div class="form-group">
                         <h:outputLabel for="horaEvento" value="Hora de inicio"/>
-                        <h:inputText a:type="time"  class="form-control" id="txthora" value="#{eventoController.evento.horario}" required="true"/>
+                        <h:inputText a:type="date"  class="form-control" id="txthora" value="#{eventoController.evento.horario}" required="true">
+                            <f:convertDateTime pattern="yyyy-MM-dd"/>
+                        </h:inputText>
                     </div>
+                    
+                    
 
                     <div class="mb-3">
                         <h:outputLabel for="DescripcionEvento" value="Descripcion del evento"/>
@@ -54,7 +64,7 @@ and open the template in the editor.
 
                 </div>
                 <div class="modal-footer mx-center justify-content-center">
-                    <h:commandButton type="button" class="btn btn-success" value="Guardar" action="#{eventoController.crearEvento()}"/>
+                    <h:commandButton class="btn btn-success" value="Guardar" action="#{eventoController.crearEvento()}"/>
                 </div>
 
             </h:form>
