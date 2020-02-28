@@ -793,6 +793,22 @@ public class usuariosController {
 
         return lista;
     }
+    
+    //consultar torneos del alumno
+    public List<AlumnoHasTorneo> listaAlumnoTProfesor() {
+        List<AlumnoHasTorneo> lista = null;
+        Usuario user;
+
+        try {
+            
+            lista = alumnoTFL.findAlumnoT(alumno.getIdAlumno());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return lista;
+    }
 
     //Consultar profesor del alumno
     public String profesorAlumno() {

@@ -17,7 +17,6 @@
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css"/>
 
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-        <script src="../../resources/datatable/js/activartabla.js" type="text/javascript"></script>
 
 
         <!-- Estilos propios -->
@@ -157,8 +156,8 @@
                                 </h3>
 
                                 <!-- Tabla de asistencia del deportista -->
-                                <h:dataTable value="#{usuariosController.listaAlumnoT()}" var="at"
-                                             class="table dt-responsive  alumnos">
+                                <h:dataTable value="#{usuariosController.listaAlumnoT()}" id="alumnos" var="at"
+                                             styleClass="stripe alumnos w-100 table-succes">
 
                                     <h:column>
 
@@ -239,6 +238,8 @@
         <!-- **************** Fin de todos los formularios *************** -->
 
         <!-- ***************************** JavaScript ********************************** -->
+        <ui:include src="/WEB-INF/datatable/estilosResponsi.xhtml"/>
+
         <!-- ********************************************************************* -->
 
     </h:body>
