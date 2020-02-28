@@ -783,6 +783,7 @@ public class usuariosController {
 
             user = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
             
+            alumno = alumnoFL.findAlumno(user.getDocumento());
 
             lista = alumnoTFL.findAlumnoT(alumno.getIdAlumno());
 
@@ -1396,5 +1397,7 @@ public class usuariosController {
 
         return listaTorneos;
     }
+    
+    //Buscar alumno
 
 }
